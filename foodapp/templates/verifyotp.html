@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify OTP | FoodMart</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #d8eefe; /* pastel blue */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .otp-box {
+      background-color: white;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .otp-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #358ac8;
+    }
+
+    .otp-box input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      width: 100%;
+      background-color: #358ac8;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #2873a3;
+    }
+
+    .msg {
+      color: green;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="otp-box">
+    <h2>Verify OTP</h2>
+
+    {% if msg %}
+      <div class="{% if 'Invalid' in msg %}error{% else %}msg{% endif %}">{{ msg }}</div>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="otp" placeholder="Enter the OTP sent to your email" required>
+      <button type="submit" name="verifyotp" class="btn">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

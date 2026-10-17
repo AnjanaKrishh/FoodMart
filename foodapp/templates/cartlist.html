@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Shopping Cart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .buy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+
+        .empty-cart {
+            text-align: center;
+            margin-top: 50px;
+            color: #888;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Your Cart</h2>
+
+{% if cart_items %}
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Price (₹)</th>
+            <th>Quantity</th>
+            <th>Total Price (₹)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>
+                {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="product-image">
+                {% else %}
+                    <span>No image</span>
+                {% endif %}
+            </td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.total_price }}</td>
+            <td>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                    <input type="hidden" name="quantity" value="{{ item.quantity }}">
+                   <a href="{% url 'buynow' item.product.id %}" class="delete-btn" onclick="return confirm('Are you sure you want to purchase this product?');">Buy</a>
+                    <a href="{% url 'deletecartitem' item.id %}" class="delete-btn" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <div class="empty-cart">
+        <p>Your cart is empty.</p>
+    </div>
+{% endif %}
+
+</body>
+</html>

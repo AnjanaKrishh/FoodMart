@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Now</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 500px;
+            margin: 60px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2f3640;
+        }
+        .info-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .user-info {
+            background-color: #dff9fb;
+            border-left: 5px solid #00a8ff;
+        }
+        .product-info {
+            background-color: #f1f2f6;
+            text-align: center;
+        }
+        .product-info img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #2f3542;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #dcdde1;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: none;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #44bd32;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #4cd137;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Confirm Your Purchase</h2>
+
+    <div class="info-block user-info">
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+
+    <div class="info-block product-info">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <p><em>No image available for this product.</em></p>
+        {% endif %}
+
+        <p><strong>Product:</strong> {{ product.buy.name }}</p>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+    </div>
+
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="address">Shipping Address:</label>
+        <textarea name="address" id="address" rows="4" required></textarea>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" name="phone" id="phone" required>
+
+        <button type="submit">Buy Now</button>
+    </form>
+</div>
+
+</body>
+</html>

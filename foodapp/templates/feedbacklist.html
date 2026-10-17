@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback List - FoodMart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 font-sans min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-400 text-white p-4 shadow">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">FoodMart</h1>
+      <a href="/" class="hover:text-gray-200">Home</a>
+    </div>
+  </nav>
+
+  <!-- Main Feedback List -->
+  <main class="container mx-auto mt-10 p-6 bg-white shadow-xl rounded-xl w-full max-w-5xl">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-8">📋 Customer Feedback</h2>
+
+    {% if feedbacks %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for fb in feedbacks %}
+        <div class="bg-blue-100 border border-blue-200 rounded-lg shadow-md p-5">
+          <h3 class="text-xl font-semibold text-blue-800">{{ fb.name }}</h3>
+          <p class="text-sm text-gray-600 mb-1">{{ fb.email }}</p>
+          <p class="mt-2 text-gray-700">"{{ fb.message }}"</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-yellow-500 font-semibold">
+              ⭐ {{ fb.rating }}/5
+            </span>
+            <span class="text-sm text-gray-500">
+              {{ fb.created_at|date:"M d, Y" }}
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center text-gray-500">No feedback available yet.</p>
+    {% endif %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-400 text-white text-center p-4 mt-10">
+    <p>&copy; 2025 FoodMart. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Purchase List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .no-orders {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Your Orders</h2>
+
+{% if buy_items %}
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            {% comment %} <th>Purchase Date</th> {% endcomment %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in buy_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.phone }}</td>
+            {% comment %} <td>{{ item.created_at|date:"M d, Y H:i" }}</td> {% endcomment %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <div class="no-orders">
+        You haven't purchased anything yet.
+    </div>
+{% endif %}
+
+</body>
+</html>

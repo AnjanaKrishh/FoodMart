@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FoodMart Blog - New Market Arrivals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 font-sans leading-relaxed tracking-wide flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-400 text-white p-4 shadow">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">FoodMart</h1>
+      <a href="/" class="text-white hover:text-gray-200 transition">Home</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-white shadow p-6 text-center">
+    <h2 class="text-3xl font-bold text-blue-700">🛒 New Market Arrivals & Offers!</h2>
+    <p class="text-gray-600 mt-2">Fresh picks, tasty treats, and special discounts just for you.</p>
+  </header>
+
+  <!-- Advertisement Banner -->
+  <section class="container mx-auto mt-6">
+    <div class="bg-blue-200 border-l-4 border-blue-500 p-6 rounded-lg flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-2xl font-bold text-blue-800">📱 Shop Faster with the FoodMart App</h3>
+        <p class="text-blue-700">Download now and enjoy a seamless grocery experience!</p>
+      </div>
+      <a href="#" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition">Download App</a>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <main class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Smoothie & Juice -->
+    <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
+      <img src="{% static 'images/slide-1.jpg'  %}"class="w-full h-48 object-cover" alt="Fresh Juices">
+      <div class="p-4">
+        <h3 class="text-xl font-semibold text-blue-700">100% Natural Smoothies & Juices</h3>
+        <p class="text-gray-600 mt-2">"Sip the Freshness, Taste the Goodness, Purely Fresh, Simply Delicious."</p>
+      </div>
+    </article>
+
+    <!-- Luxa Chocolate -->
+    <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
+      <img src="{% static 'images/ad-image-3.png' %}" class="w-full h-48 object-cover" alt="Luxa Chocolate">
+      <div class="p-4">
+        <h3 class="text-xl font-semibold text-blue-700">Luxa Dark Chocolate</h3>
+        <p class="text-red-600 font-semibold">Upto 25% Off</p>
+        <p class="text-gray-600 mt-1">Authentic Luxa Dark Chocolates.</p>
+      </div>
+    </article>
+
+    <!-- Muffins -->
+    <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
+      <img src="{% static 'images/ad-image-4.png' %}" class="w-full h-48 object-cover" alt="Creamy Muffins">
+      <div class="p-4">
+        <h3 class="text-xl font-semibold text-blue-700">Creamy Vanilla Muffins</h3>
+        <p class="text-red-600 font-semibold">Upto 25% Off</p>
+        <p class="text-gray-600 mt-1">Very tasty & creamy vanilla flavour creamy muffins.</p>
+      </div>
+    </article>
+
+    <!-- First Purchase Offer -->
+    <article class="bg-blue-100 rounded-xl shadow-md hover:shadow-lg transition overflow-hidden col-span-full">
+      <div class="p-8 text-center">
+        <h3 class="text-2xl font-bold text-blue-700 mb-2">🎉 Get 25% Off on Your First Purchase</h3>
+        <p class="text-blue-600 text-lg">"New Here? Enjoy 25% Off Your First Purchase!"</p>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-400 text-white text-center p-4 mt-auto">
+    <p>&copy; 2025 FoodMart. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

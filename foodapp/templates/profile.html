@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+        }
+
+        .info h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .info p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% if c.image %}
+        <img src="{{ c.image.url }}" alt="Profile Image" class="profile-img">
+    {% else %}
+        <img src="/static/default-profile.png" alt="Default Image" class="profile-img">
+    {% endif %}
+
+    <div class="info">
+        <h2>{{ c.name }}</h2>
+        <p><strong>Age:</strong> {{ c.age }}</p>
+        <p><strong>Email:</strong> {{ c.email }}</p>
+    </div>
+
+    <a href="{% url 'editprofile' %}" class="btn">Edit Profile</a>
+</div>
+
+</body>
+</html>

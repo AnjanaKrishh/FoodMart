@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Product List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 min-h-screen font-sans">
+
+    <header class="text-center py-10">
+        <h1 class="text-4xl font-bold text-blue-800 mb-2">🛒 FoodMart Admin - Product List</h1>
+        <p class="text-gray-600 text-sm">Manage your inventory with ease and professionalism</p>
+    </header>
+
+    <section class="container mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {% for product in a %}
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100 overflow-hidden flex flex-col">
+                <div class="bg-blue-100 h-48 flex justify-center items-center overflow-hidden">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-full object-cover">
+                    {% else %}
+                        <span class="text-gray-400 text-sm">No Image Available</span>
+                    {% endif %}
+                </div>
+
+                <div class="p-4 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-800 mb-1 text-center">{{ product.name }}</h2>
+                        <p class="text-gray-600 text-sm text-center mb-2">{{ product.description }}</p>
+                    </div>
+
+                    <div class="flex justify-between items-center text-sm mt-3">
+                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">Qty: {{ product.quantity }}</span>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">${{ product.price }}</span>
+                    </div>
+
+                    <div class="mt-4 flex justify-between">
+                        <a href="{% url 'editproduct' product.id %}" 
+                           class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-4 py-2 rounded-lg transition">
+                            ✏️ Edit
+                        </a>
+                        <a href="{% url 'deleteproduct' product.id %}" 
+                           class="bg-red-500 hover:bg-red-600 text-white text-xs font-medium px-4 py-2 rounded-lg transition"
+                           onclick="return confirm('Are you sure you want to delete this product?');">
+                            🗑️ Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="col-span-full text-center text-gray-500 text-lg">No products available.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer class="text-center mt-16 text-gray-500 text-sm">
+        <p>&copy; 2025 FoodMart Admin. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

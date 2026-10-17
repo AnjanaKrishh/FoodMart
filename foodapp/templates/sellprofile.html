@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Profile</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eaf4fc; /* pastel blue background */
+    }
+
+    .navbar {
+      background-color: #1f3c88;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 15px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #4169e1;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
+      background-color: white;
+      padding: 35px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-header h2 {
+      color: #1f3c88;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .profile-details {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .profile-details label {
+      font-weight: 600;
+      display: inline-block;
+      width: 140px;
+      color: #333;
+    }
+
+    .edit-btn {
+      display: block;
+      width: 220px;
+      margin: 35px auto 0;
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .edit-btn:hover {
+      background-color: #217dbb;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 30px 15px;
+        padding: 25px;
+      }
+
+      .profile-details label {
+        width: 100%;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .edit-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div><strong>Admin Panel</strong></div>
+  <div>
+    <a href="{% url 'sellhome' %}">Dashboard</a>
+    <a href="{% url 'addproduct' %}">Add Product</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="profile-header">
+    <h2>My Profile</h2>
+  </div>
+
+  <div class="profile-details">
+    <p><label>Name:</label> {{ c.name }}</p>
+    <p><label>Email:</label> {{ c.email }}</p>
+    <p><label>Phone:</label> {{ c.phone }}</p>
+    {# Uncomment if needed #}
+    {# <p><label>Shop Name:</label> {{ c.shopname }}</p> #}
+    <p><label>Address:</label> {{ c.address }}</p>
+  </div>
+
+  <a class="edit-btn" href="{% url 'editprofile' %}">Edit Profile</a>
+</div>
+
+</body>
+</html>
+<!--             </a>
+ -->

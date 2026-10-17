@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add to Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            margin-top: 0;
+        }
+
+        .product input[type="number"] {
+            padding: 8px;
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        .product button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #218838;
+        }
+
+        .cart-items {
+            margin-top: 40px;
+        }
+
+        .cart-items table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-items th, .cart-items td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .cart-items th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .cart-items tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if p %}
+        <h2>Add Product to Cart</h2>
+        <div class="product">
+            <h3>{{ p.name }}</h3>
+            <p><strong>Price:</strong> ₹{{ p.price }}</p>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity" min="1" value="1" required>
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+        {% endif %}
+
+        {% if c %}
+        <div class="cart-items">
+            <h2>Your Cart</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in c %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>₹{{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

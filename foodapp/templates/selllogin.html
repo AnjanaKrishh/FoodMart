@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            width: 400px;
+            margin: 80px auto;
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .extra-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .extra-links a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+            {% comment %} if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            } {% endcomment %}
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Admin Login</h2>
+    <form method="POST" onsubmit="return validateForm();">
+        {% csrf_token %}
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Login">
+         
+    </form>
+
+    <div class="extra-links">
+        <a href="{% url 'sellregister' %}">Create Account</a> |
+        {% comment %} <a href="{% url 'password_reset' %}">Forgot Password?</a> {% endcomment %}
+    <br>
+    <a href="{% url 'sellhome' %}" class="nav-link">Go to Admin Home</a>
+
+    </div>
+</div>
+
+</body>
+</html>

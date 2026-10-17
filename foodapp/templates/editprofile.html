@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit profile</title>
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .edit-form-container {
+            max-width: 600px;
+            margin: 70px auto;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .edit-form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="edit-form-container">
+    <h2>Edit Profile</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{ c.name }}" required>
+
+        <label for="age">Age</label>
+        <input type="number" name="age" value="{{ c.age }}" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{ c.email }}" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" value="{{ c.password }}" required>
+
+        <label for="image">Profile Image</label>
+        <input type="file" name="image" id="image" accept="image">
+
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <a class="back-link" href="{% url 'profile' %}">← Back to Profile</a>
+</div>
+
+</body>
+</html>
